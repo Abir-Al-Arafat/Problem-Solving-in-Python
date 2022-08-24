@@ -12,6 +12,7 @@ def sieveOfEratosthenes(limit):
     while number*number <= limit:
         if number != 0:
             for n in range(number*2, limit+1, number):
+                # setting non prime numbers to 0
                 numbers[n] = 0
         number += 1
 
