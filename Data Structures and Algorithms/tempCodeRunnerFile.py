@@ -1,3 +1,5 @@
-if self.length == 0:
-            self.head = None
-            self.tail = None
+if min_index != start_index:
+        temp = array[start_index]
+        array[start_index] = array[min_index]
+        array[min_index] = temp
+    print(array)
