@@ -4,9 +4,11 @@
 # define a constructor which sets the root node to 'None'
 # define an 'insert' method to insert a node into the binary search tree
 # define a 'contains' method which checks if a node exists into a binary search tree
+# define a 'bfs' method to traverse all the nodes of the tree
 
 
 # class to create a node
+
 class Node:
     # constructor to initialize the value and left and right pointer
     def __init__(self, value):
@@ -84,13 +86,51 @@ class BinarySearchTree:
 
         return False
 
+    # method to traverse all the nodes of the tree using bfs
+    def bfs(self):
+        # keeping the root node in a variable
+        current = self.root
+
+        # list to keep parent nodes
+        queue = []
+        # appending the root node
+        queue.append(current)
+
+        # list to keep value of the nodes
+        result = []
+
+        # the loop will run until theres a node in the list
+        while len(queue) > 0:
+            # keeping parent node in a variable
+            current = queue.pop(0)
+            # adding the value of the current node
+            result.append(current.value)
+
+            # checking if the left child of current node exists
+            if current.left is not None:
+                # adding the left child to the queue
+                queue.append(current.left)
+
+            # checking if the right child of current node exists
+            if current.right is not None:
+                # adding the right child to the queue
+                queue.append(current.right)
+        # returning the traversed nodes
+        return result
+
 
 bst = BinarySearchTree()
-bst.insert(2)
-bst.insert(3)
-bst.insert(1)
+bst.insert(47)
+bst.insert(21)
+bst.insert(76)
+bst.insert(18)
+bst.insert(27)
+bst.insert(52)
+bst.insert(82)
 print("root node:", bst.root.value)
 print("right node:", bst.root.right.value)
 print("left node:", bst.root.left.value)
 
 print(bst.contains(4))
+
+print(bst.bfs())

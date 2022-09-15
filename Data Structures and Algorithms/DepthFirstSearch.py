@@ -4,9 +4,12 @@
 # define a constructor which sets the root node to 'None'
 # define an 'insert' method to insert a node into the binary search tree
 # define a 'contains' method which checks if a node exists into a binary search tree
-
+# define a 'dfs_pre_order' method which traverses the tree using depth first search pre order technique
+# define a 'dfs_post_order' method which traverses the tree using depth first search post order technique
+# define a 'dfs_in_order' method which traverses the tree using depth first search in order technique
 
 # class to create a node
+
 class Node:
     # constructor to initialize the value and left and right pointer
     def __init__(self, value):
@@ -84,13 +87,90 @@ class BinarySearchTree:
 
         return False
 
+    # method to visit all the nodes
+    def dfs_pre_order(self):
+        # list to keep the traversed nodes
+        result = []
+
+        # method to visit all the nodes in pre order
+        def traverse(current_node):
+            # appending the value of current node
+            result.append(current_node.value)
+
+            # checking if the left child exists
+            if current_node.left is not None:
+                # visiting left child
+                traverse(current_node.left)
+
+            # checking if the right child exists
+            if current_node.right is not None:
+                # visiting right child
+                traverse(current_node.right)
+
+        # using root node as argument because the traversing will start from the root
+        traverse(self.root)
+        return result
+
+    # method to visit all the nodes
+    def dfs_post_order(self):
+        # list to keep the traversed nodes
+        result = []
+
+        # method to visit all the nodes in post order
+        def traverse(current_node):
+            # checking if the left child exists
+            if current_node.left is not None:
+                # visiting left child
+                traverse(current_node.left)
+
+            # checking if the right child exists
+            if current_node.right is not None:
+                # visiting right child
+                traverse(current_node.right)
+            # appending the value of current node
+            result.append(current_node.value)
+        # using root node as argument because the traversing will start from the root
+        traverse(self.root)
+        return result
+
+    # method to visit all the nodes
+    def dfs_in_order(self):
+        # list to keep the traversed nodes
+        result = []
+
+        # method to visit all the nodes in in_order
+        def traverse(current_node):
+            # checking if the left child exists
+            if current_node.left is not None:
+                # visiting left child
+                traverse(current_node.left)
+
+            # appending the value of current node
+            result.append(current_node.value)
+
+            # checking if the right child exists
+            if current_node.right is not None:
+                # visiting right child
+                traverse(current_node.right)
+        # using root node as argument because the traversing will start from the root
+        traverse(self.root)
+        return result
+
 
 bst = BinarySearchTree()
-bst.insert(2)
-bst.insert(3)
-bst.insert(1)
+bst.insert(47)
+bst.insert(21)
+bst.insert(76)
+bst.insert(18)
+bst.insert(27)
+bst.insert(52)
+bst.insert(82)
 print("root node:", bst.root.value)
 print("right node:", bst.root.right.value)
 print("left node:", bst.root.left.value)
 
-print(bst.contains(4))
+print(bst.contains(47))
+
+print("DFS Pre Order", bst.dfs_pre_order())
+print("DFS Post Order", bst.dfs_post_order())
+print("DFS In Order", bst.dfs_in_order())
