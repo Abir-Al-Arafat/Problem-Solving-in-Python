@@ -5,8 +5,6 @@
 # define an 'insert' method to insert a node into the binary search tree
 # define a 'contains' method which checks if a node exists into a binary search tree
 
-
-# class to create a node
 class Node:
     # constructor to initialize the value and left and right pointer
     def __init__(self, value):
@@ -61,6 +59,7 @@ class BinarySearchTree:
 
     # method to search a node:
     def contains(self, value):
+
         # checking if there any node exists or not
         if self.root is None:
             return False
@@ -84,6 +83,19 @@ class BinarySearchTree:
 
         return False
 
+    # method to search a node using recoursion
+    # takes 2 parameters, root of tree and the target value
+    def search(self, root, target):
+        if not root:
+            return False
+
+        if target < root.value:
+            return self.search(root.left, target)
+        elif target > root.value:
+            return self.search(root.right, target)
+        else:
+            return True
+
 
 bst = BinarySearchTree()
 bst.insert(2)
@@ -93,4 +105,5 @@ print("root node:", bst.root.value)
 print("right node:", bst.root.right.value)
 print("left node:", bst.root.left.value)
 
-print(bst.contains(4))
+print(bst.contains(3))
+print(bst.search(bst.root, 3))
