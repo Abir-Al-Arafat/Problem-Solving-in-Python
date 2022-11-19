@@ -72,6 +72,84 @@ def remove(root, target):
             root.right = remove(root.right, min_node.value)
     return root
 
+# function for inorder traversal
+
+
+def dfs_inorder(root):
+    temp = root
+
+    if temp and temp.left:
+        dfs_inorder(root.left)
+
+    print(temp.value, end=" ")
+    if temp and temp.right:
+        dfs_inorder(root.right)
+
+# function for preorder traversal
+
+
+def dfs_preorder(root):
+    temp = root
+
+    print(temp.value, end=" ")
+    if temp and temp.left:
+        dfs_preorder(temp.left)
+    if temp and temp.right:
+        dfs_preorder(temp.right)
+
+# function for postorder traversal
+
+
+def dfs_postorder(root):
+    temp = root
+
+    if temp and temp.left:
+        dfs_postorder(temp.left)
+    if temp and temp.right:
+        dfs_postorder(temp.right)
+    print(temp.value, end=" ")
+
+# function for printing the tree values in reversed order
+
+
+def reverse(root):
+    temp = root
+
+    if temp and temp.right:
+        reverse(root.right)
+    print(temp.value, end=" ")
+    if temp and temp.left:
+        reverse(root.left)
+
+# function for bfs traversal
+
+
+def bfs(root):
+
+    if not root:
+        return None
+
+    temp = root
+    nodes = []
+    nodes.append(temp)
+    values = []
+    values.append(temp.value)
+
+    # if root and root.left:
+    #     nodes.append(root.left)
+    # if root and root.right:
+    #     nodes.append(root.right)
+
+    while nodes:
+        node = nodes.pop(0)
+        if node.left:
+            values.append(node.left.value)
+            nodes.append(node.left)
+        if node.right:
+            values.append(node.right.value)
+            nodes.append(node.right)
+    return values
+
 
 node = Node(5)
 node4 = Node(4)
@@ -90,6 +168,15 @@ print(node.left.left.value, "       ", node.right.right.value)
 # remove(node, 3)
 # remove(node, 7)
 
-print("   ", node.value)
-print(" ", node.left.value, "  ", node.right.value)
-print(node.left.left.value, "       ", node.right.right.value)
+# print("   ", node.value)
+# print(" ", node.left.value, "  ", node.right.value)
+# print(node.left.left.value, "       ", node.right.right.value)
+
+# dfs_inorder(node)
+# print()
+# dfs_preorder(node)
+# print()
+# dfs_postorder(node)
+# print()
+# reverse(node)
+print(bfs(node))
