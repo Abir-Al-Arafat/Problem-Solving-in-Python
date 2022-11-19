@@ -50,6 +50,28 @@ def minNode(root):
 
     return temp
 
+# function to remove a node from a tree
+
+
+def remove(root, target):
+    if not root:
+        return None
+
+    if target > root.value:
+        root.right = remove(root.right, target)
+    elif target < root.value:
+        root.left = remove(root.left, target)
+    else:
+        if not root.left:
+            return root.right
+        elif not root.right:
+            return root.left
+        else:
+            min_node = minNode(root.right)
+            root.value = min_node.value
+            root.right = remove(root.right, min_node.value)
+    return root
+
 
 node = Node(5)
 node4 = Node(4)
@@ -59,7 +81,15 @@ node.right = node6
 print(" ", node.value)
 print(node.left.value, " ", node.right.value)
 
-print(insert(node, 7).value)
-print(insert(node, 3).value)
-print(node.left.left.value)
-print(minNode(node).value)
+print(insert(node, 7))
+print(insert(node, 3))
+
+print("   ", node.value)
+print(" ", node.left.value, "  ", node.right.value)
+print(node.left.left.value, "       ", node.right.right.value)
+# remove(node, 3)
+# remove(node, 7)
+
+print("   ", node.value)
+print(" ", node.left.value, "  ", node.right.value)
+print(node.left.left.value, "       ", node.right.right.value)
