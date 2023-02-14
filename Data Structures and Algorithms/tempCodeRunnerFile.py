@@ -1,5 +1,3 @@
-if min_index != start_index:
-        temp = array[start_index]
-        array[start_index] = array[min_index]
-        array[min_index] = temp
-    print(array)
+ll.add_end(2)
+ll.add_end(3)
+ll.add_end(4)
