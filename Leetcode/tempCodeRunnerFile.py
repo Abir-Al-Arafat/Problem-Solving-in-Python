@@ -1,4 +1,2 @@
- # elif array[i] - buy < 0:
-        #     profit = 0
-        #     index += 1
-        #     buy = array[index]
+if len(window) > k:
+            window.pop(0)
