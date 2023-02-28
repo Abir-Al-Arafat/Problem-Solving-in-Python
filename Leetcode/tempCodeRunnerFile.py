@@ -1,2 +1,2 @@
-if len(window) > k:
-            window.pop(0)
+total -= arr[left]
+                # window.pop(0)
