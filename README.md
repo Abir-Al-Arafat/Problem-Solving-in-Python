@@ -1,2 +1,2 @@
 # Problem-Solving-in-Python
-Some basic problems I solved using python
+Some problems I solved starting from basics to advanced including data structures and algorithms using python.
