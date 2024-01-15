@@ -1,0 +1,5 @@
+print(nodes.value)
+print(nodes.next.value)
+print(nodes.next.next.value)
+print(nodes.next.next.next.value)
+print(nodes.next.next.next.next.value)
