@@ -1,5 +1,4 @@
-print(nodes.value)
-print(nodes.next.value)
-print(nodes.next.next.value)
-print(nodes.next.next.next.value)
-print(nodes.next.next.next.next.value)
+while nodes:
+    print(nodes.value, end=" -> ")
+    nodes = nodes.next
+ll.print_list()

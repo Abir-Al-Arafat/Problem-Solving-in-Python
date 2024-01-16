@@ -71,44 +71,57 @@ class LinkedList:
         return self.head
 
     def reverse_between(self, start_idx, finish_idx):
-        if self.head is None or self.length == 1:
+        # checking for valid index
+        if not self.head or self.length == 1 or start_idx == finish_idx or start_idx<0 or finish_idx<0 or finish_idx>=self.length or start_idx>finish_idx:
             return None
         
+        # initializing
         start_node = end_node = before = self.head
 
+        # these loops are used to store start and end nodes
+        # loop for storing start node and the node before start node
         for _ in range(start_idx):
             before = start_node
             start_node = start_node.next
+        
+        # for storing last node
         for _ in range(finish_idx):
             end_node = end_node.next
 
+        # for storing the node after last node
         end_node_after = end_node.next
 
+        # replacing first and last node (head and tail)
         temp = start_node
         start_node = end_node
         end_node = temp
 
+        # initializing
         temp_before = None
         temp_after = temp.next
-
-        # return start_node, end_node, temp
-
-        # while temp.value!=start_node.value:
-        #     temp_after = temp.next
-        #     temp.next = temp_before
-        #     temp_before = temp
-        #     temp = temp_after
-            # if start_node.value == temp.value:
-            #     break
         
+        # loop for reversing the nodes
         for _ in range((finish_idx-start_idx)+1):
             temp_after = temp.next
             temp.next = temp_before
             temp_before = temp
             temp = temp_after
+        
+        # checking if head node has changed its position
         if start_idx != 0:
+            # setting the next pointer to the reversed nodes
             before.next = temp_before
+        else:
+            # setting new head node
+            self.head = temp_before
+        
+        # connecting last node to the rest of the nodes
         end_node.next = end_node_after
+
+        # checking if tail pointer needs to get changed
+        if end_node_after is None:
+            # setting the tail pointer
+            self.tail = end_node
         # return temp_before, before, end_node
         return self.head
     
@@ -119,44 +132,28 @@ ll.append(4)
 ll.append(5)
 
 ll.print_list()
-ll.reverse()
 print()
-ll.print_list()
-print()
-ll.reverse()
-ll.print_list()
-print()
-nodes = ll.reverse_between(1, 2)
-
+nodes = ll.reverse_between(2, 4)
+print("nodes", nodes)
 # ll.print_list()
 
-# print("start_node", nodes[0].value)
-# print("start_node", nodes[0].next)
-# print("end_node", nodes[1].value)
-# print("end_node", nodes[1].next)
-# print("end_node", nodes[1].next.value)
-# print("end_node", nodes[1].next.next.value)
-# print("temp (start node)", nodes[2].value)
-# print("temp (start node)", nodes[2].next)
-# print("temp (start node)", nodes[2].next.value)
-
-# print(nodes.value)
-# print(nodes.next.value)
-# print(nodes.next.next.value)
-# print(nodes.next.next.next)
-
-# print(nodes.value)
-# print(nodes.next.value)
-# print(nodes.next.next.value)
-# print(nodes.next.next.next.value)
-# print(nodes.next.next.next.next.value)
 while nodes:
     print(nodes.value, end=" -> ")
     nodes = nodes.next
+print()
 ll.print_list()
+print()
+print("head", ll.head.value)
+print("tail", ll.tail.value)
+
 # print(nodes[0].value)
+# print(nodes[0].next.value)
+# print(nodes[0].next.next.value)
+# print(nodes[0].next.next.next.value)
+# print(nodes[0].next.next.next.next.value)
 # print(nodes[1].value)
-# print(nodes[2].next)
+# print(nodes[1].next.value)
+# print("end_node", nodes[2].value)
     
 for _ in range(0):
     print("printing for range 0")
