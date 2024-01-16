@@ -69,7 +69,8 @@ class LinkedList:
             temp = after
         
         return self.head
-
+    
+    # my solution
     def reverse_between(self, start_idx, finish_idx):
         # checking for valid index
         if not self.head or self.length == 1 or start_idx == finish_idx or start_idx<0 or finish_idx<0 or finish_idx>=self.length or start_idx>finish_idx:
@@ -124,6 +125,29 @@ class LinkedList:
             self.tail = end_node
         # return temp_before, before, end_node
         return self.head
+    # less code optimised solution
+    def reverse_between_optimised(self, m, n):
+        if not self.head:
+            return None
+ 
+        dummy = Node(0)
+        dummy.next = self.head
+        prev = dummy
+ 
+        for i in range(m):
+            prev = prev.next
+ 
+        current = prev.next
+        for i in range(n - m):
+            temp = current.next
+            current.next = temp.next
+            temp.next = prev.next
+            prev.next = temp
+ 
+        self.head = dummy.next
+
+        return self.head
+
     
 ll = LinkedList(1)
 ll.append(2)
@@ -155,5 +179,12 @@ print("tail", ll.tail.value)
 # print(nodes[1].next.value)
 # print("end_node", nodes[2].value)
     
-for _ in range(0):
-    print("printing for range 0")
+# for _ in range(0):
+#     print("printing for range 0")
+
+# head = ll.reverse_between_optimised(0, 4)
+
+# print("optimised")
+# while head:
+#     print(head.value, end=" -> ")
+#     head = head.next
