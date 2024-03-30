@@ -6,4 +6,4 @@ def gcd(a, b):
     return gcd(b, a % b)
 
 
-print(gcd(24, 60))
+print(gcd(2, 4))
