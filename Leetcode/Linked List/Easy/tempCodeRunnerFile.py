@@ -1,0 +1,2 @@
+nonlocal increment
+            nonlocal output
