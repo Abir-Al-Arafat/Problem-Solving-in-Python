@@ -46,3 +46,43 @@ class Solution:
                 result.append(children)
         
         return result
+    
+    def rightSideView2(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        trav = [root]
+        result = [root.val]
+
+        while trav:
+            travLength = len(trav)
+            children = None
+            for _ in range(travLength):
+                temp = trav.pop(0)
+                print("temp", temp.val)
+                print("temp left", temp.left)
+                print("temp right", temp.right)
+
+                if temp.left:
+                    children = temp.left.val
+                    trav.append(temp.left)
+                if temp.right:
+                    children = temp.right.val
+                    trav.append(temp.right)
+                print("children", children)
+            print("---------------")
+            print("children", children)
+            if children is not None:
+                result.append(children)
+        
+        return result
+
+head = TreeNode(1)
+head.left = TreeNode(2)
+head.right = TreeNode(0)
+
+print(head.val)
+print(head.left.val)
+print(head.right.val)
+
+solulu = Solution()
+print(solulu.rightSideView2(head))
