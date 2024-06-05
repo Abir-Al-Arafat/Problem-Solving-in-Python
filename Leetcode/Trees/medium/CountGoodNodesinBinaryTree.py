@@ -24,6 +24,9 @@
 # Explanation: Root is considered as good.
 
 # Definition for a binary tree node.
+from collections import deque
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -42,4 +45,31 @@ class Solution:
             result += trav(root.right, maxNodeValue)
             return result
         return trav(root, root.val)
-            
+def bfs(root: TreeNode):
+    if not root:
+        return []
+    
+    queue = deque([root])
+    result = []
+    
+    while queue:
+        node = queue.popleft()
+        result.append(node.val)
+        
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+    
+    return result
+head = TreeNode(3)
+head.left = TreeNode(1)
+head.left.left = TreeNode(3)
+head.right = TreeNode(4)
+head.right.left = TreeNode(1)
+head.right.right = TreeNode(5)
+
+print(bfs(head))
+
+solulu = Solution()
+print(solulu.goodNodes(head))
