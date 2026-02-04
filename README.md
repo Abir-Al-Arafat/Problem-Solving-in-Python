@@ -26,8 +26,3 @@ A curated collection of Python solutions and exercises covering basic programmin
   ```bash
   python "Basic Ones/reverseString.py"
   ```
-
-- Recommended: use a virtual environment and Python 3.8+.
-- Many files are small, standalone examples: inspect the top of each file for input assumptions and sample usage.
-
----
